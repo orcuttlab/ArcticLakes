@@ -1,5 +1,5 @@
 #Adopted from the DADA2 Pipeline: https://benjjneb.github.io/dada2/tutorial.html
-#These reads were sequenced at the Michigan State University sequencing core using the EMP V4 primers
+#These reads were sequenced at the Michigan State University sequencing core using the original EMP primer pair 515f/806r (Caporaso et al., 2012)
 #These reads are stored on the NCBI SRA Archive under BioProject ID PRJNA635031
 #The processed data in RDS file format are uploaded for analysis in R
 path <- "~/INSERT DIRECTORY" # Directory where files are located
