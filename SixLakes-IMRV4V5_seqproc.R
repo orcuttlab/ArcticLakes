@@ -1,4 +1,7 @@
-#DADA2 Pipeline 
+#Adopted from the DADA2 Pipeline: https://benjjneb.github.io/dada2/tutorial.html
+#These reads were sequenced at Integrated Microbiome Resource (IMR) using the 515FB / 926R primer pair (Parada et al., 2015, Walters et al., 2015)
+#Raw read files are uploaded to the European Nucleotide Archive (ENA) under accession number PRJEB25188
+#Processed data saved in RDS file format for upload and analysis in R are included in the repo
 path <- "~/INSERT DIRECTORY" # Directory where files are located
 fnFs <- sort(list.files(path, pattern="_R1_001.fastq", full.names = TRUE))
 fnRs <- sort(list.files(path, pattern="_R2_001.fastq", full.names = TRUE))
@@ -11,7 +14,7 @@ filtRs <- file.path(path, "filtered", paste0(sample.names, "_R_filt.fastq.gz"))
 out <- filterAndTrim(fnFs, filtFs, fnRs, filtRs, truncLen=c(250,200), 
               maxN=0, maxEE=c(2,2), trimLeft = 30, truncQ=2, rm.phix=TRUE,
               compress=TRUE, multithread=TRUE) # On Windows set multithread=FALSE
-head(out) # Notes trimming parameters 
+head(out) # Note trimming parameters 
 errF <- learnErrors(filtFs, multithread=TRUE)
 errR <- learnErrors(filtRs, multithread=TRUE)
 plotErrors(errF, nominalQ=TRUE)
