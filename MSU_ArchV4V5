@@ -1,5 +1,6 @@
 #Adopted from the DADA2 Pipeline: https://benjjneb.github.io/dada2/tutorial.html
 #These reads were sequenced at the Michigan State University sequencing core using the Archaea V4V5 primers
+#These reads are stored on the NCBI SRA Archive under BioProject ID PRJNA635031
 #The processed data in RDS file format are uploaded for analysis in R
 path <- "~/INSERT DIRECTORY" # Directory where files are located
 fnFs <- sort(list.files(path, pattern="_R1_001.fastq", full.names = TRUE))
