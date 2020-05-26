@@ -31,6 +31,6 @@ table(nchar(getSequences(seqtab)))
 seqtab2 <- seqtab[,nchar(colnames(seqtab)) %in% seq(340,365)] # Selection of Amplicon length to keep
 seqtab.nochim <- removeBimeraDenovo(seqtab2, method="consensus", multithread=TRUE, verbose=TRUE)
 taxa <- assignTaxonomy(seqtab.nochim, "~/Desktop/silva_nr_v138_train_set.fa.gz", multithread=TRUE) # Silva v138 Taxonomy Database
-saveRDS(seqtab.nochim, file = "arctic_all_asv") # Files uploaded to Github
-saveRDS(taxa, file = "arctic_all_taxa")# Files uploaded to Github
+saveRDS(seqtab.nochim, file = "arctic_IMRV4V5_asv") # Files uploaded to Github
+saveRDS(taxa, file = "arctic_IMRV4V5_taxa")# Files uploaded to Github
 
