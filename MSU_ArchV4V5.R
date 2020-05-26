@@ -1,5 +1,5 @@
 #Adopted from the DADA2 Pipeline: https://benjjneb.github.io/dada2/tutorial.html
-#These reads were sequenced at the Michigan State University sequencing core using the Archaea V4V5 primers
+#These reads were sequenced at the Michigan State University sequencing core using primer pair A519F/A958R (DeLong et al., 1992)
 #These reads are stored on the NCBI SRA Archive under BioProject ID PRJNA635031
 #The processed data in RDS file format are uploaded for analysis in R
 path <- "~/INSERT DIRECTORY" # Directory where files are located
