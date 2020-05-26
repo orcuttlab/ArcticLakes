@@ -1,0 +1,3 @@
+#Adopted from the DADA2 Pipeline: https://benjjneb.github.io/dada2/tutorial.html
+#These reads were sequenced at the Michigan State University sequencing core using the EMP V4 primers
+#The processed data in RDS file format are uploaded for analysis in R
