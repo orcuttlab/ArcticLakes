@@ -1,6 +1,6 @@
 #Adopted from the DADA2 Pipeline: https://benjjneb.github.io/dada2/tutorial.html
 #These reads were sequenced at Integrated Microbiome Resource (IMR) using the 515FB / 926R primer pair (Parada et al., 2015, Walters et al., 2015)
-#Raw read files are uploaded to the European Nucleotide Archive (ENA) under accession number PRJEB25188
+#Raw read files are uploaded to the European Nucleotide Archive (ENA) under accession number PRJEB25188 and NCBI SRA BioProject ID PRJNA635031, see ArcticLakesProjects_AccessionIDs.xlsx for details
 #Processed data saved in RDS file format for upload and analysis in R are included in the repo
 path <- "~/INSERT DIRECTORY" # Directory where files are located
 fnFs <- sort(list.files(path, pattern="_R1_001.fastq", full.names = TRUE))
