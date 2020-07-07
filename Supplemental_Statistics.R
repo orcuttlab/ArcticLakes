@@ -63,6 +63,46 @@ labs(y="Axis-2 [13% Variation]", x = "Axis-1 [16.3% Variation]") +
 theme_classic()
 arct_aitch
 
+# Differential Abundance
+                                                       
+
+write.csv(otu_table(arctic_lakes_pr), file = "lakes_aldex2_pruned.csv")
+lakes_asv <- read.csv("lakes_aldex2_pruned.csv", header = TRUE, row.names = 1)
+lakes_asv_T <- t(lakes_asv)
+write.csv(sample_data(arctic_lakes_pr), file = "lakes_AldMet.csv")
+lake_aldex2_meta <- read.csv(file="lakes_AldMet.csv", header = TRUE, row.names=1)
+conds <- as.character(lake_aldex2_meta$season)
+lake_aldex2 <- aldex.clr(lakes_asv_T, conds = conds, mc.samples=128)
+lake_effects <- aldex.effect(lake_aldex2, conds)
+lake_stat <- aldex.ttest(lake_aldex2, conds, paired.test= FALSE)
+lake_DAT <- data.frame(lake_effects, lake_stat)
+aldex.plot(lake_DAT, method = "welch", cutoff=0.05)
+lake_DAT = lake_DAT[order(lake_DAT$diff.btw, na.last=NA), ]
+alpha = .05
+sigtab = lake_DAT[(lake_DAT$we.eBH < alpha), ]
+sigtab = cbind(as(sigtab, "data.frame"), as(tax_table(arctic_lakes_pr)[rownames(sigtab), ], "matrix"))
+
+#Figure
+ 
+ theme_set(theme_bw(base_size=13)) 
+#sigtabgen = subset(sigtab1, !is.na(Genus)) this removes things with Genus as NA
+sigtabgen = sigtab1
+# Phylum order
+x = tapply(sigtabgen$Median.CLR.Difference, sigtabgen$Class, function(x) max(x))
+x = sort(x, TRUE)
+sigtabgen$Class = factor(as.character(sigtabgen$Class), levels=names(x))
+# Genus order
+x = tapply(sigtabgen$Median.CLR.Difference, sigtabgen$Genus, function(x) max(x))
+x = sort(x, TRUE)
+sigtabgen$Genus = factor(as.character(sigtabgen$Genus), levels=names(x))
+diff_plot <- ggplot(sigtabgen, aes(y=Genus, x=Median.CLR.Difference, color=Class)) +
+  theme(text = element_text(face="bold", color="#000000")) +
+  geom_vline(xintercept = 0.0, color = "gray", size = 0.5) +
+  geom_point(size=4, shape=9) + 
+  geom_errorbarh(aes(xmax = Median.CLR.Difference + 0.5*diff.win, xmin = Median.CLR.Difference - 0.5*diff.win, height = .4)) +
+  scale_color_manual(values=pal31) +
+  theme(axis.text.x = element_text(angle = -90, hjust = 0, vjust=0.5)) 
+diff_plot                                                     
 
 # Regression of qPCR data (https://sejohnston.com/2012/08/09/a-quick-and-easy-function-to-plot-lm-results-in-r/)
 
